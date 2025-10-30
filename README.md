@@ -8,10 +8,10 @@ It extracts **MCP abduction**, **MCP/PIP/DIP flexion**, and **angular velocity**
 ## 🧠 Motivation
 
 Typing generates **distinct biomechanical signatures**.  
-This project studies whether finger-joint motion can reveal **which key is pressed** — a step toward:
+This project explores whether finger-joint motion can reveal **which key is pressed**, enabling:
 
 - 👁️+✋ Gaze-and-hand predictive typing  
-- 🧠 Human motor-intention decoding  
+- 🧠 Motor-intention decoding  
 - 🕶️ VR/AR natural text entry  
 - 🧵 Biomechanics + HCI research  
 
@@ -99,8 +99,7 @@ $$
 \right)
 $$
 
-### ✅ DIP Flexion
-
+**DIP flexion**
 $$
 \theta_{\text{DIP}}
 =
@@ -117,35 +116,31 @@ $$
 \right)
 $$
 
-
 ---
 
 ### ✅ Angle Unwrapping
-
 $$
 \theta_{\text{unwrap}} = \text{unwrap}(\theta)
 $$
 
 ### ✅ Angular Velocity (deg/s)
-
 $$
-\omega = \frac{d(\theta_{unwrap})}{dt}
+\omega = \frac{d(\theta_{\text{unwrap}})}{dt}
 $$
 
 ---
 
 ## ✨ Features
 
-- Full right-hand index finger kinematic extraction  
+- Right-hand index finger kinematic extraction  
 - MCP **abduction**, MCP/PIP/DIP **flexion**  
-- NaN-safe processing & angle unwrapping  
-- Per-keypress event-based sampling  
-- 3D biomechanical cluster plots  
-- Parallel batch processing for CSV datasets  
-- Designed for **QTM motion-capture marker format**
+- Angle unwrapping & NaN-safe velocity  
+- Per-keypress event sampling  
+- 3D kinematic cluster visualization  
+- Parallel CSV processing  
+- Supports **QTM motion-capture marker format**
 
-Right-index keys analyzed:
-
+**Keys analyzed (right index finger):**
 y h n u j m
 
 ---
@@ -156,8 +151,8 @@ y h n u j m
 |------|-------------|
 3D MCP space | Abduction × Flexion × Velocity  
 3D Flexion clusters | MCP vs PIP vs DIP  
-Flexion–Velocity Grid | Joint angle dynamics  
-Keystroke separation | Character-wise clusters  
+Flexion–Velocity Grid | Dynamic joint motion  
+Key separation | Character-wise kinematics  
 
 ---
 
@@ -165,7 +160,7 @@ Keystroke separation | Character-wise clusters
 
 CSV files with:
 
-- Finger marker XYZ positions  
+- Finger marker XYZ coordinates  
 - Palm markers  
 - `Pressed_Letter`  
 - `KeyPressFlag`  
@@ -175,12 +170,12 @@ CSV files with:
 
 ## 🧵 Processing Pipeline
 
-1. Load QTM marker data  
-2. Compute vectors & palm plane  
-3. Compute MCP/PIP/DIP angles  
-4. Unwrap + convert to degrees  
+1. Load QTM motion-capture data  
+2. Compute palm plane + joint vectors  
+3. Calculate MCP/PIP/DIP angles  
+4. Unwrap angles → convert to degrees  
 5. Compute angular velocity  
-6. Extract frames at key events  
+6. Sample angles at keystrokes  
 7. Plot 3D kinematic clusters  
 
 ---
@@ -197,4 +192,8 @@ concurrent.futures
 
 ## ▶️ Run
 
+```bash
 python PROVE.py
+📎 Author
+Fateme Eslami — AI & Motion Interaction Research
+University of Birmingham
