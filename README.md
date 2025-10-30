@@ -68,6 +68,8 @@ $$
 \cdot \theta
 $$
 
+---
+
 ### ✅ MCP / PIP / DIP Flexion
 
 **General MCP flexion**
@@ -120,7 +122,6 @@ $$
 \lVert \vec{v}_{DIP \rightarrow TIP} \rVert
 }
 \right)
-$$
 
 ### ✅ Angle Unwrapping
 
