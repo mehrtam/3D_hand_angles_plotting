@@ -99,7 +99,8 @@ $$
 \right)
 $$
 
-**DIP flexion**
+### ✅ DIP Flexion
+
 $$
 \theta_{\text{DIP}}
 =
@@ -115,6 +116,7 @@ $$
 }
 \right)
 $$
+
 
 ---
 
