@@ -20,24 +20,21 @@ This project studies whether finger-joint motion can reveal **which key is press
 ## 📐 Mathematical Formulation
 
 ### ✅ 3D Joint Vector
-
 $$
 \vec{v} = \mathbf{p}_2 - \mathbf{p}_1
 $$
 
 ### ✅ Palm Plane Normal
-
 $$
 \mathbf{n} =
 \frac{
 (\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1)
 }{
-\left\lVert (\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1) \right\rVert
+\lVert (\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1) \rVert
 }
 $$
 
 ### ✅ Projection onto Palm Plane
-
 $$
 \vec{v}_{proj}
 =
@@ -47,87 +44,84 @@ $$
 $$
 
 ### ✅ Angle Between Vectors
-
 $$
 \theta =
 \arccos\left(
-\frac{\vec{v_1} \cdot \vec{v_2}}
-{\lVert\vec{v_1}\rVert \lVert\vec{v_2}\rVert}
+\frac{
+\vec{v}_1 \cdot \vec{v}_2
+}{
+\lVert \vec{v}_1 \rVert \, \lVert \vec{v}_2 \rVert
+}
 \right)
 $$
 
 ### ✅ MCP Abduction Angle (Signed)
-
 $$
-\theta_{abd}
+\theta_{\text{abd}}
 =
-\operatorname{sign}((\vec{v_{mcpBar}} \times \vec{v_{proj}})\cdot \hat{n})
-\cdot
-\theta
+\text{sign}\left((\vec{v}_{mcpBar} \times \vec{v}_{proj}) \cdot \hat{n}\right)
+\cdot \theta
 $$
+
+---
+
 ### ✅ MCP / PIP / DIP Flexion
 
-**General MCP flexion:**
-
+**General MCP flexion**
 $$
 \theta_{\text{flexion}}
 =
 \frac{\pi}{2}
 -
-\arccos
-\left(
-\frac{\vec{v}_{\text{segment}} \cdot \hat{n}}
-{\lVert \vec{v}_{\text{segment}} \rVert}
+\arccos\left(
+\frac{
+\vec{v}_{segment} \cdot \hat{n}
+}{
+\lVert \vec{v}_{segment} \rVert
+}
 \right)
 $$
 
----
-
-**PIP flexion:**
-
+**PIP flexion**
 $$
 \theta_{\text{PIP}}
 =
-\arccos
-\left(
+\arccos\left(
 \frac{
-\vec{v}_{\text{MCP}\rightarrow\text{PIP}}
+\vec{v}_{MCP \rightarrow PIP}
 \cdot
-\vec{v}_{\text{PIP}\rightarrow\text{DIP}}
+\vec{v}_{PIP \rightarrow DIP}
 }{
-\lVert \vec{v}_{\text{MCP}\rightarrow\text{PIP}} \rVert
-\,
-\lVert \vec{v}_{\text{PIP}\rightarrow\text{DIP}} \rVert
+\lVert \vec{v}_{MCP \rightarrow PIP} \rVert
+\;
+\lVert \vec{v}_{PIP \rightarrow DIP} \rVert
+}
+\right)
+$$
+
+**DIP flexion**
+$$
+\theta_{\text{DIP}}
+=
+\arccos\left(
+\frac{
+\vec{v}_{PIP \rightarrow DIP}
+\cdot
+\vec{v}_{DIP \rightarrow TIP}
+}{
+\lVert \vec{v}_{PIP \rightarrow DIP} \rVert
+\;
+\lVert \vec{v}_{DIP \rightarrow TIP} \rVert
 }
 \right)
 $$
 
 ---
-
-**DIP flexion:**
-
-$$
-\theta_{\text{DIP}}
-=
-\arccos
-\left(
-\frac{
-\vec{v}_{\text{PIP}\rightarrow\text{DIP}}
-\cdot
-\vec{v}_{\text{DIP}\rightarrow\text{TIP}}
-}{
-\lVert \vec{v}_{\text{PIP}\rightarrow\text{DIP}} \rVert
-\,
-\lVert \vec{v}_{\text{DIP}\rightarrow\text{TIP}} \rVert
-}
-\right)
-$$
-
 
 ### ✅ Angle Unwrapping
 
 $$
-\theta_{unwrap} = \operatorname{unwrap}(\theta)
+\theta_{\text{unwrap}} = \text{unwrap}(\theta)
 $$
 
 ### ✅ Angular Velocity (deg/s)
