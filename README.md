@@ -20,11 +20,13 @@ This project explores whether finger-joint motion can reveal **which key is pres
 ## 📐 Mathematical Formulation
 
 ### ✅ 3D Joint Vector
+
 $$
 \vec{v} = \mathbf{p}_2 - \mathbf{p}_1
 $$
 
 ### ✅ Palm Plane Normal
+
 $$
 \mathbf{n} =
 \frac{
@@ -35,6 +37,7 @@ $$
 $$
 
 ### ✅ Projection onto Palm Plane
+
 $$
 \vec{v}_{proj}
 =
@@ -44,6 +47,7 @@ $$
 $$
 
 ### ✅ Angle Between Vectors
+
 $$
 \theta =
 \arccos\left(
@@ -56,6 +60,7 @@ $$
 $$
 
 ### ✅ MCP Abduction Angle (Signed)
+
 $$
 \theta_{\text{abd}}
 =
@@ -63,11 +68,10 @@ $$
 \cdot \theta
 $$
 
----
-
 ### ✅ MCP / PIP / DIP Flexion
 
 **General MCP flexion**
+
 $$
 \theta_{\text{flexion}}
 =
@@ -83,6 +87,7 @@ $$
 $$
 
 **PIP flexion**
+
 $$
 \theta_{\text{PIP}}
 =
@@ -100,6 +105,7 @@ $$
 $$
 
 **DIP flexion**
+
 $$
 \theta_{\text{DIP}}
 =
@@ -116,14 +122,14 @@ $$
 \right)
 $$
 
----
-
 ### ✅ Angle Unwrapping
+
 $$
 \theta_{\text{unwrap}} = \text{unwrap}(\theta)
 $$
 
 ### ✅ Angular Velocity (deg/s)
+
 $$
 \omega = \frac{d(\theta_{\text{unwrap}})}{dt}
 $$
