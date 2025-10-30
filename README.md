@@ -43,7 +43,7 @@ $$
 =
 \vec{v}
 -
-(\vec{v} \cdot \hat{n})\hat{n}
+\left( (\vec{v} \cdot \hat{n}) \right)\hat{n}
 $$
 
 ### ✅ Angle Between Vectors
@@ -65,42 +65,64 @@ $$
 \cdot
 \theta
 $$
-
 ### ✅ MCP / PIP / DIP Flexion
 
-General flexion:
+**General MCP flexion:**
 
 $$
-\theta_{flexion}
+\theta_{\text{flexion}}
 =
 \frac{\pi}{2}
 -
 \arccos
 \left(
-\frac{\vec{v_{segment}}\cdot \hat{n}}
-{\|\vec{v_{segment}}\|}
+\frac{\vec{v}_{\text{segment}} \cdot \hat{n}}
+{\lVert \vec{v}_{\text{segment}} \rVert}
 \right)
 $$
 
-PIP:
+---
+
+**PIP flexion:**
 
 $$
-\theta_{PIP} =
-\arccos \left(
-\frac{\vec{v_{MCP\to PIP}} \cdot \vec{v_{PIP\to DIP}}}
-{\lVert \vec{v_{MCP\to PIP}} \rVert \lVert \vec{v_{PIP\to DIP}} \rVert}
+\theta_{\text{PIP}}
+=
+\arccos
+\left(
+\frac{
+\vec{v}_{\text{MCP}\rightarrow\text{PIP}}
+\cdot
+\vec{v}_{\text{PIP}\rightarrow\text{DIP}}
+}{
+\lVert \vec{v}_{\text{MCP}\rightarrow\text{PIP}} \rVert
+\,
+\lVert \vec{v}_{\text{PIP}\rightarrow\text{DIP}} \rVert
+}
 \right)
 $$
 
-DIP:
+---
+
+**DIP flexion:**
 
 $$
-\theta_{DIP} =
-\arccos \left(
-\frac{\vec{v_{PIP\to DIP}} \cdot \vec{v_{DIP\to TIP}}}
-{\lVert \vec{v_{PIP\to DIP}} \rVert \lVert \vec{v_{DIP\to TIP}} \rVert}
+\theta_{\text{DIP}}
+=
+\arccos
+\left(
+\frac{
+\vec{v}_{\text{PIP}\rightarrow\text{DIP}}
+\cdot
+\vec{v}_{\text{DIP}\rightarrow\text{TIP}}
+}{
+\lVert \vec{v}_{\text{PIP}\rightarrow\text{DIP}} \rVert
+\,
+\lVert \vec{v}_{\text{DIP}\rightarrow\text{TIP}} \rVert
+}
 \right)
 $$
+
 
 ### ✅ Angle Unwrapping
 
