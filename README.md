@@ -10,21 +10,23 @@ It extracts **MCP abduction**, **MCP/PIP/DIP flexion**, and **angular velocity**
 Typing generates **distinct biomechanical signatures**.  
 This project studies whether finger-joint motion can reveal **which key is pressed** — a step toward:
 
-- 👁️+✋ Gaze-and-hand predictive typing
-- 🧠 Human motor-intention decoding
-- 🕶️ VR/AR natural text entry
-- 🧵 Biomechanics + HCI research
+- 👁️+✋ Gaze-and-hand predictive typing  
+- 🧠 Human motor-intention decoding  
+- 🕶️ VR/AR natural text entry  
+- 🧵 Biomechanics + HCI research  
 
 ---
 
 ## 📐 Mathematical Formulation
 
 ### ✅ 3D Joint Vector
+
 $$
 \vec{v} = \mathbf{p}_2 - \mathbf{p}_1
 $$
 
 ### ✅ Palm Plane Normal
+
 $$
 \mathbf{n} =
 \frac{
@@ -35,6 +37,7 @@ $$
 $$
 
 ### ✅ Projection onto Palm Plane
+
 $$
 \vec{v}_{proj}
 =
@@ -44,6 +47,7 @@ $$
 $$
 
 ### ✅ Angle Between Vectors
+
 $$
 \theta =
 \arccos\left(
@@ -53,6 +57,7 @@ $$
 $$
 
 ### ✅ MCP Abduction Angle (Signed)
+
 $$
 \theta_{abd}
 =
@@ -62,6 +67,7 @@ $$
 $$
 
 ### ✅ MCP / PIP / DIP Flexion
+
 General flexion:
 
 $$
@@ -76,7 +82,7 @@ $$
 \right)
 $$
 
-PIP/DIP angles:
+PIP:
 
 $$
 \theta_{PIP} =
@@ -85,6 +91,8 @@ $$
 {\lVert \vec{v_{MCP\to PIP}} \rVert \lVert \vec{v_{PIP\to DIP}} \rVert}
 \right)
 $$
+
+DIP:
 
 $$
 \theta_{DIP} =
@@ -95,11 +103,13 @@ $$
 $$
 
 ### ✅ Angle Unwrapping
+
 $$
 \theta_{unwrap} = \operatorname{unwrap}(\theta)
 $$
 
 ### ✅ Angular Velocity (deg/s)
+
 $$
 \omega = \frac{d(\theta_{unwrap})}{dt}
 $$
@@ -126,10 +136,10 @@ y h n u j m
 
 | Plot | Description |
 |------|-------------|
-3D MCP space | Abduction × Flexion × Velocity
-3D Flexion clusters | MCP vs PIP vs DIP
-Flexion–Velocity Grid | Joint angle dynamics
-Keystroke separation | Character-wise clusters
+3D MCP space | Abduction × Flexion × Velocity  
+3D Flexion clusters | MCP vs PIP vs DIP  
+Flexion–Velocity Grid | Joint angle dynamics  
+Keystroke separation | Character-wise clusters  
 
 ---
 
@@ -139,21 +149,21 @@ CSV files with:
 
 - Finger marker XYZ positions  
 - Palm markers  
-- `Pressed_Letter`
-- `KeyPressFlag`
-- `TimeStamp`
+- `Pressed_Letter`  
+- `KeyPressFlag`  
+- `TimeStamp`  
 
 ---
 
 ## 🧵 Processing Pipeline
 
-1. Load QTM marker data
-2. Compute vectors & palm plane
-3. Compute MCP/PIP/DIP angles
-4. Unwrap + convert to degrees
-5. Compute angular velocity
-6. Extract frames at key events
-7. Plot 3D kinematic clusters
+1. Load QTM marker data  
+2. Compute vectors & palm plane  
+3. Compute MCP/PIP/DIP angles  
+4. Unwrap + convert to degrees  
+5. Compute angular velocity  
+6. Extract frames at key events  
+7. Plot 3D kinematic clusters  
 
 ---
 
@@ -164,9 +174,9 @@ pandas
 matplotlib
 seaborn
 concurrent.futures
+
 ---
 
 ## ▶️ Run
 
-```bash
 python PROVE.py
