@@ -24,105 +24,15 @@ Event Sampling: Precise sampling of angles and velocities at per-keypress events
 High-Throughput Processing: Parallel CSV processing and support for the QTM motion-capture marker format.
 
 📐 Mathematical Methodology
-The project relies on standard vector geometry to calculate joint angles relative to the palm plane.
+## 📎 Kinematic Measures Summary
 
-Key Formulas
+| Kinematic Measure | Description | Formula |
+|------------------|------------|--------|
+| **Palm Plane Normal** \( \hat{n} \) | Unit vector perpendicular to the palm plane | $$ \hat{n} = \frac{( \mathbf{p}_2 - \mathbf{p}_1 ) \times ( \mathbf{p}_3 - \mathbf{p}_1 )}{\left\lVert ( \mathbf{p}_2 - \mathbf{p}_1 ) \times ( \mathbf{p}_3 - \mathbf{p}_1 ) \right\rVert} $$ |
+| **MCP Abduction Angle** | Signed angle between projected finger direction and reference palm axis | $$ \theta_{\text{abd}} = \text{sign}\!\left((\vec{v}_{ref} \times \vec{v}_{proj}) \cdot \hat{n}\right)\, \cdot \theta $$ |
+| **PIP / DIP Flexion** | Angle between adjacent phalanx vectors \( \vec{v}_1 , \vec{v}_2 \) | $$ \theta_{\text{flex}} = \arccos\left(\frac{\vec{v}_1 \cdot \vec{v}_2}{\lVert \vec{v}_1 \rVert \, \lVert \vec{v}_2 \rVert}\right) $$ |
+| **Angular Velocity** \( \omega \) | Rate of change of unwrapped joint angle | $$ \omega = \frac{d(\theta_{\text{unwrap}})}{dt} $$ |
 
-Kinematic Measure	Description	Formula
-Palm Plane Normal ( 
-n
-^
- )	Unit vector perpendicular to the palm's surface.	
-n
-^
- = 
-∥…∥
-(p 
-2
-​	
- −p 
-1
-​	
- )×(p 
-3
-​	
- −p 
-1
-​	
- )
-​	
- 
-MCP Abduction Angle	Signed angle between the proximal phalanx projection and a reference vector on the palm plane.	
-θ 
-abd
-​	
- =sign(( 
-v
-
-  
-ref
-​	
- × 
-v
-
-  
-proj
-​	
- )⋅ 
-n
-^
- )⋅θ
-PIP / DIP Flexion	Angle between adjacent bone segment vectors ( 
-v
-
-  
-1
-​	
- , 
-v
-
-  
-2
-​	
- ).	
-θ 
-flex
-​	
- =arccos( 
-∥ 
-v
-
-  
-1
-​	
- ∥∥ 
-v
-
-  
-2
-​	
- ∥
-v
-
-  
-1
-​	
- ⋅ 
-v
-
-  
-2
-​	
- 
-​	
- )
-Angular Velocity (ω)	Rate of change of the unwrapped joint angle.	
-ω= 
-dt
-d(θ 
-unwrap
-​	
- )
 ​	
  
 📊 Visualizations
