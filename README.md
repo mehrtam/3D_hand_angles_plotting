@@ -28,10 +28,10 @@ High-Throughput Processing: Parallel CSV processing and support for the QTM moti
 
 | Kinematic Measure | Description | Formula |
 |------------------|------------|--------|
-| **Palm Plane Normal** \( \hat{n} \) | Unit vector perpendicular to the palm plane | $$ \hat{n} = \frac{( \mathbf{p}_2 - \mathbf{p}_1 ) \times ( \mathbf{p}_3 - \mathbf{p}_1 )}{\left\lVert ( \mathbf{p}_2 - \mathbf{p}_1 ) \times ( \mathbf{p}_3 - \mathbf{p}_1 ) \right\rVert} $$ |
-| **MCP Abduction Angle** | Signed angle between projected finger direction and reference palm axis | $$ \theta_{\text{abd}} = \text{sign}\!\left((\vec{v}_{ref} \times \vec{v}_{proj}) \cdot \hat{n}\right)\, \cdot \theta $$ |
-| **PIP / DIP Flexion** | Angle between adjacent phalanx vectors \( \vec{v}_1 , \vec{v}_2 \) | $$ \theta_{\text{flex}} = \arccos\left(\frac{\vec{v}_1 \cdot \vec{v}_2}{\lVert \vec{v}_1 \rVert \, \lVert \vec{v}_2 \rVert}\right) $$ |
-| **Angular Velocity** \( \omega \) | Rate of change of unwrapped joint angle | $$ \omega = \frac{d(\theta_{\text{unwrap}})}{dt} $$ |
+| **Palm Plane Normal** \( \hat{n} \) | Unit vector perpendicular to the palm plane | \( \hat{n} = \frac{(\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1)}{\lVert (\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1) \rVert} \) |
+| **MCP Abduction Angle** | Signed angle of index MCP relative to palm plane | \( \theta_{\text{abd}} = \text{sign}\big((\vec{v}_{ref} \times \vec{v}_{proj}) \cdot \hat{n}\big) \cdot \theta \) |
+| **PIP / DIP Flexion** | Angle between phalanx vectors \( \vec{v}_1, \vec{v}_2 \) | \( \theta = \arccos\left(\frac{\vec{v}_1 \cdot \vec{v}_2}{\lVert \vec{v}_1 \rVert \lVert \vec{v}_2 \rVert}\right) \) |
+| **Angular Velocity** \( \omega \) | Rate of change of unwrapped angle | \( \omega = \frac{d(\theta_{\text{unwrap}})}{dt} \) |
 
 ​	
  
