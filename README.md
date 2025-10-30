@@ -1,96 +1,109 @@
-🖐️ PROVE: 3D Hand Angles Plotting — Right Index Finger Kinematics
-This project computes, analyzes, and visualizes the 3D joint angles of the right index finger derived from motion-capture typing data. By extracting MCP abduction, MCP/PIP/DIP flexion, and angular velocity, PROVE (Project for Verification of Kinematic Events) analyzes biomechanical typing patterns to reveal motor intent and keypress identity.
+# 🖐️ 3D Hand Angles Plotting — Right Index Finger Kinematics
 
-🧠 Motivation: Decoding Biomechanical Signatures
-Typing generates distinct biomechanical signatures in finger movement. This project investigates whether fine-grained finger-joint kinematics can reliably predict which key is being pressed, opening doors for advanced Human-Computer Interaction (HCI) applications:
+This project extracts and visualizes **3D right-index-finger joint movements** during typing using motion-capture data. It computes joint angles and angular velocities, then visualizes how different keystrokes create distinct motion clusters.
 
-👁️+✋ Gaze-and-Hand Predictive Typing: Enhancing predictive text models by incorporating sub-conscious finger movements.
+This work supports research in **motion-based text entry**, **biomechanics**, and **predictive typing for AR/VR environments**.
 
-🧠 Motor-Intention Decoding: Translating pre-press movement into input for control or accessibility.
+---
 
-🕶️ VR/AR Natural Text Entry: Developing robust, intuitive input systems for immersive environments.
+## 🎯 Purpose
 
-🔬 Biomechanics & HCI Research: Advancing the fundamental understanding of human motor control during interaction.
+Typing generates unique **biomechanical patterns**.  
+This code explores whether finger joint motion alone can reveal **which key was pressed** — a step toward:
 
-✨ Features
-Kinematic Extraction: Computation of right-index-finger MCP abduction and MCP/PIP/DIP flexion.
+- Motion-based predictive typing (VR/AR, XR)
+- Assistive & hands-free communication systems
+- Gaze-plus-hand multimodal typing
+- Motor intention decoding
+- HCI / biomechanics research
 
-Dynamic Analysis: Calculation of angular velocity (ω) using angle unwrapping for continuous data.
+---
 
-Event Sampling: Precise sampling of angles and velocities at per-keypress events.
+## ✅ Key Features
 
-3D Visualization: Plotting of kinematic clusters for y,h,n,u,j,m keys to demonstrate key separation.
+- Right-hand index-finger kinematic extraction
+- Computes:
+  - MCP abduction
+  - MCP / PIP / DIP flexion
+  - Angular velocity
+- Detects and samples frames at keypress time
+- Handles NaNs, unwrapping, and velocity stability
+- Parallel batch processing for many CSV files
+- Built for **Qualisys/QTM motion-capture data**
+- Visualizes 3D clusters for each key
 
-High-Throughput Processing: Parallel CSV processing and support for the QTM motion-capture marker format.
+Supported right-index keys:
 
-📐 Mathematical Methodology
-## 📎 Kinematic Measures Summary
+`y, h, n, u, j, m`
 
-| Kinematic Measure | Description | Formula |
-|------------------|------------|--------|
-| **Palm Plane Normal** \( \hat{n} \) | Unit vector perpendicular to the palm plane | \( \hat{n} = \frac{(\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1)}{\lVert (\mathbf{p}_2 - \mathbf{p}_1) \times (\mathbf{p}_3 - \mathbf{p}_1) \rVert} \) |
-| **MCP Abduction Angle** | Signed angle of index MCP relative to palm plane | \( \theta_{\text{abd}} = \text{sign}\big((\vec{v}_{ref} \times \vec{v}_{proj}) \cdot \hat{n}\big) \cdot \theta \) |
-| **PIP / DIP Flexion** | Angle between phalanx vectors \( \vec{v}_1, \vec{v}_2 \) | \( \theta = \arccos\left(\frac{\vec{v}_1 \cdot \vec{v}_2}{\lVert \vec{v}_1 \rVert \lVert \vec{v}_2 \rVert}\right) \) |
-| **Angular Velocity** \( \omega \) | Rate of change of unwrapped angle | \( \omega = \frac{d(\theta_{\text{unwrap}})}{dt} \) |
+---
 
-​	
- 
-📊 Visualizations
-The output focuses on 3D clustering and dynamic phase space analysis to reveal distinct typing patterns.
+## 📊 Visualizations
 
-Plot Type	Axes/Dimensions	Purpose
-3D MCP Space	Abduction × Flexion × Velocity	Visualize the complete dynamic motion space of the MCP joint for each key.
-3D Flexion Clusters	MCP vs PIP vs DIP	Analyze the coordination and inter-dependency between the three main finger joints.
-Flexion–Velocity Grid	Dynamic Phase Plots	Show the rate of change of flexion against the angle itself.
-📂 Input Data Format
-The system expects motion-capture data structured in CSV files, including:
+| Plot Type | Description |
+|----------|-------------|
+3D MCP Angle Space | Abduction vs Flexion vs Velocity cluster plot  
+3D Flexion Clusters | MCP vs PIP vs DIP joint angle mapping  
+Angle–Velocity Space | Displays dynamic movement profiles  
+Key-Based Clusters | Shows how finger motion separates keys  
 
-XYZ Coordinates for all index finger and palm markers.
+---
 
-TimeStamp (Frame time).
+## 🧾 Input Requirements
 
-Pressed_Letter (The character associated with the event).
+Your CSV files should include:
 
-KeyPressFlag (A binary marker for keystroke contact).
+- 3D marker positions for index finger joints  
+- Palm reference markers  
+- Timestamps  
+- Keypress flag and pressed character  
 
-⚙️ Processing Pipeline
-Data Loading: Ingest QTM motion-capture data.
+Example columns:
 
-Vector Calculation: Compute segment vectors and the Palm Plane Normal ( 
-n
-^
- ).
+QTMdc_R_Index_Prox_GLOBAL_X, Y, Z
+QTMdc_R_Index_Inter_GLOBAL_X, Y, Z
+QTMdc_R_Index_Distal_GLOBAL_X, Y, Z
+QTMdc_R_Index_End_GLOBAL_X, Y, Z
+Pressed_Letter
+KeyPressFlag
+TimeStamp
 
-Angle Calculation: Determine raw MCP, PIP, and DIP joint angles.
+---
 
-Signal Processing: Apply angle unwrapping and conversion to degrees.
+## 🧵 Processing Pipeline
 
-Velocity Calculation: Compute angular velocity (ω).
+1. Load .csv motion-capture files
+2. Extract finger and palm marker positions
+3. Compute MCP / PIP / DIP joint angles
+4. Compute angular velocities
+5. Detect keypress frames
+6. Extract kinematic values at event frames
+7. Plot 2D & 3D cluster visualizations
 
-Event Sampling: Sample angle/velocity data precisely at keystrokes.
+---
 
-Visualization: Generate 3D kinematic cluster plots.
-
-▶️ Run Instructions
-To run the analysis script:
-
-Bash
-# Ensure dependencies are installed
-pip install numpy pandas matplotlib seaborn concurrent.futures
-
-# Execute the main script
-python PROVE.py
-Dependencies
+## ⚙️ Dependencies
 
 numpy
-
 pandas
-
 matplotlib
-
 seaborn
-
 concurrent.futures
 
-📎 Author
-Fateme Eslami AI & Motion Interaction Research University of Birmingham
+---
+
+## ▶️ Run the Script
+
+```bash
+python PROVE.py
+Make sure to update the input data path inside the script.
+📎 Project Goal
+To evaluate whether hand biomechanics alone can predict typing intention, enabling natural, hands-in-air text entry for:
+AR/VR typing interfaces
+Neural & kinematic decoding systems
+Accessibility & assistive input devices
+Cognitive-motor research
+👩‍💻 Author
+Fateme Eslami
+AI & Human-Motion Interaction Research
+University of Birmingham
